@@ -1,0 +1,36 @@
+.ant-layout.layout {
+    min-height: 100vh;
+}
+
+.lemon-header.ant-layout-header {
+    height: 100px;
+    line-height: normal;
+    padding-inline: 0;
+    background-color: #fff;
+}
+
+.lemon-btn-a.ant-btn.ant-btn-primary {
+    color: #000;
+    background-color: var(--cl-secondary);
+    box-shadow: 0 0 4px rgb(0 0 0 / 30%);
+}
+
+.lemon-btn-a.ant-btn.ant-btn-primary:hover {
+    color: #fff;
+    background-color: var(--cl-primary);
+}
+
+.lemon-btn-b.ant-btn.ant-btn-primary {
+    background-color: var(--cl-primary);
+    box-shadow: 0 0 4px rgb(0 0 0 / 30%);
+}
+
+.lemon-btn-b.ant-btn.ant-btn-primary:hover {
+    color: #000;
+    background-color: var(--cl-secondary);
+}
+
+
+.ant-carousel .slick-list {
+    border-radius: 15px;
+}
