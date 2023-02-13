@@ -7,7 +7,7 @@ const About = () => {
 
     return (
         <Row gutter={[50, 30]} className="mg-section-bottom">
-            <Col className="media-text" md={12}>
+            <Col className="double-media-text" md={12}>
                 <h2 className="lemon-title mg-title-text">Little Lemon</h2>
                 <h3 className="lemon-subtitle">Chicago</h3>
                 <p>Little Lemon is a charming neighbourhood bistro that serves simple food and classic cocktails in a lively but casual environment. The restaurant features a locally-sourced menu with daily specials.</p>
