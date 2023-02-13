@@ -1,4 +1,4 @@
-import { Row, Col, Avatar, Space } from 'antd'
+import { Row, Col, Avatar, Space, Rate } from 'antd'
 
 const Testimonials = ({testimonialsList}) => {
     return (
@@ -12,6 +12,7 @@ const Testimonials = ({testimonialsList}) => {
                                 <Avatar size="large" src={item.avatar}/>
                                 <h3>{item.name}</h3>
                             </Space>
+                            <Rate disabled defaultValue={item.rate} style={{color: "#f5f5f5"}}/>
                             <p>{item.description}</p>
                         </Space>
                     </Col>

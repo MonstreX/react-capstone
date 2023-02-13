@@ -7,7 +7,7 @@ import banner3 from '../assets/images/b2.jpg'
 const Slider = () => {
     const navigate = useNavigate()
     return (
-        <Carousel className="mg-section-bottom" effect="fade" styles={{borderRadius: "20px"}}>
+        <Carousel effect="fade">
             <div className='lemon-banner-item'>
                 <img className='image-fit v-top' src={banner1} alt="" />
                 <div className='lemon-banner-item__box'>
