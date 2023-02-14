@@ -12,9 +12,8 @@
     --cl-white: #fff;
     --fnt-header: 'Markazi Text', serif;
     --fnt-body: 'Markazi Text', serif;
-    --fnt-header-size: 3rem;
-    --fnt-subheader-size: 2.2rem;
-    --fnt-body-size: 1rem;
+    --fnt-header-size: 3.5rem;
+    --fnt-subheader-size: 2.8rem;
 }
 
 *,
@@ -25,18 +24,23 @@
   padding: 0;
 }
 
-body {
+body.lemon-body {
   margin: 0;
   padding: 0;
   font-family: var(--fnt-body);
-  font-size: var(--fnt-body-size);
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   background-color: var(--cl-white);
 }
 
 p {
+    font-size: 1rem;
     margin-bottom: 15px;
+}
+
+p:last-child {
+    margin-bottom: 0;
 }
 
 .container {
@@ -123,7 +127,6 @@ p {
     margin-bottom: 15px;
 }
 
-
 @media (max-width: 767px) {
     .pd-section {
         padding: 40px 0 30px;
@@ -154,6 +157,13 @@ p {
 .lemon-header-logo {
     display: flex;
     align-items: center;
+}
+
+.lemon-header-cart {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 15px;
 }
 
 .lemon-header-menu .ant-menu-light .menu-link {
@@ -197,20 +207,24 @@ p {
 }
 
 .lemon-footer-logo {
-    font-size: .9rem;
     color: #ccc;
 }
 
 .lemon-footer-logo span {
     max-width: 270px;
+    font-size: .9rem;
 }
 
 .ant-layout-footer.lemon-footer h3 {
+    font-family: var(--fnt-header);
+    font-weight: 300;
     color: var(--cl-secondary);
+    font-size: 2rem;
 }
 
 .ant-layout-footer.lemon-footer ul {
     padding-left: 20px;
+    font-size: 1rem;
 }
 
 .ant-layout-footer.lemon-footer li a {
@@ -228,6 +242,10 @@ p {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+.lemon-footer-contact .ant-space-item {
+    font-size: 1rem;
 }
 
 /* Main Banner Slider */
@@ -274,6 +292,7 @@ p {
 .lemon-banner-item__content p {
     max-width: 450px;
     margin-top: 25px;
+    font-size: 1.2rem;
 }
 
 .lemon-banner-item__content .lemon-btn-a {

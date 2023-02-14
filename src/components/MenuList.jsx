@@ -1,8 +1,22 @@
-import { useNavigate } from "react-router-dom"
 import { Button, Row, Col } from 'antd'
+import { useMain } from '../hooks/main'
 
 const MenuList = ({menuList, special = false}) => {
-    const navigate = useNavigate()
+    const { cart, cartDispatch } =  useMain()
+
+    const addToCart = (item) => {
+        cartDispatch({
+            type: 'add', 
+            payload: {
+                key: item.key,
+                title: item.title,
+                image: item.image,
+                qty: 1,
+                price: item.price,
+            }
+        })
+    }
+
     return (
     <Row gutter={[30, 30]}>
         {
@@ -14,8 +28,8 @@ const MenuList = ({menuList, special = false}) => {
                 }
             }).map(item => {
                 return (
-                <Col span={24} sm={12} lg={8}>
-                    <div className="lemon-menu-item" key={item.title}>
+                <Col span={24} sm={12} lg={8}  key={item.key}>
+                    <div className="lemon-menu-item">
                         <div className="lemon-menu-item__image">
                             <img className="" src={item.image} alt={item.title} />
                             <div className="lemon-menu-item__overlay"></div>
@@ -29,8 +43,13 @@ const MenuList = ({menuList, special = false}) => {
                                 <p>{item.description}</p>
                             </div>
                             <div className="lemon-menu-item__footer">
-                                <Button className="lemon-btn-b" size="large" type="primary" shape="round" onClick={() => { navigate("/booking", {replace: true})}}>
-                                    Order the dish
+                                <Button 
+                                    className="lemon-btn-b" 
+                                    size="large" 
+                                    type="primary" 
+                                    shape="round" 
+                                    onClick={() => addToCart(item)}>
+                                    Add to shop-cart
                                 </Button>
                             </div>
                         </div>

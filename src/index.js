@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { ConfigProvider } from 'antd'
+import { ConfigProvider, App as AppProvider } from 'antd'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -10,7 +10,6 @@ root.render(
         theme={{
             "token": {
               "fontFamily": "'Karla', sans-serif",
-              "fontSize": "16px",
               "colorPrimary": "#495e57",
               "colorError": "#d44444",
               "colorPrimaryBg": "#f4ce14",
@@ -18,7 +17,9 @@ root.render(
             }
         }}
     >
-      <App />
+      <AppProvider>
+        <App />
+      </AppProvider>
     </ConfigProvider>
   </React.StrictMode>
 );

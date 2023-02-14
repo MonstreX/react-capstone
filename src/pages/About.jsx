@@ -7,6 +7,7 @@ import Testimonials from "../components/Testimonials"
 import about1 from '../assets/images/about1.jpg'
 import about2 from '../assets/images/about2.jpg'
 
+
 const About = () => {
     return (
         <>

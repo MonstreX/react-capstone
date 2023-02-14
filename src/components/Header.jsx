@@ -1,10 +1,24 @@
 import { NavLink, Link } from 'react-router-dom'
-import { Menu, Col, Row } from 'antd'
-import { MenuOutlined } from '@ant-design/icons'
+import { Menu, Button, Row, Col, Avatar, Badge, Popover, Space } from 'antd'
+import { MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons'
+import { useMain } from '../hooks/main'
+import MiniShopCartList from './MiniShopCartList'
 
 import logo from '../assets/images/logo-small.png'
 
 const Header = () => {
+
+    const { cart } =  useMain()
+
+    const text = <span>Title</span>
+
+    const content = (
+      <Space direction="vertical">
+        <MiniShopCartList items={cart.items}/>
+        <Button className="lemon-btn-a" size="large" type="primary" shape="round">Checkout</Button>
+      </Space>
+    )
+
     return (
         <div className='container'>
             <div className='lemon-header-row'>
@@ -12,6 +26,13 @@ const Header = () => {
                     <Link to='/'>
                         <img src={logo} alt="Little lemon" />
                     </Link>
+                </Col>
+                <Col flex="auto" className="lemon-header-cart">
+                    <Badge count={cart.items.length}>
+                        <Popover placement="bottom" title={text} content={content}>
+                            <Avatar shape="circle" size={42} icon={<ShoppingCartOutlined />} />
+                        </Popover>
+                    </Badge>
                 </Col>
                 <Col flex="auto" className="lemon-header-menu">
                     <nav>
