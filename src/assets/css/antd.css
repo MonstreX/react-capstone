@@ -33,3 +33,15 @@
 .ant-carousel .slick-list {
     /* border-radius: 15px; */
 }
+
+/* Forms */
+
+.lemon-form {
+
+}
+
+.lemon-form-inner {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Steps, Result, Space, Button, Checkbox, Form, Input } from 'antd'
+import { useNavigate } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import ShopCartList from '../components/ShopCartList'
 import StepsNav from '../components/StepsNav'
@@ -8,12 +9,16 @@ import headerImage from '../assets/images/header6.jpg'
 
 const Checkout = () => {
 
+    const navigate = useNavigate()
+
     const { cart, cartDispatch } =  useMain()
     const [ step, setStep ] = useState(0)
     const [ form, setForm ] = useState()
 
     const onFinish = (values) => {
         console.log('Success:', values, form)
+        setStep(2)
+        cartDispatch({type: 'clear'})
     }
 
     const onFinishFailed = (errorInfo) => {
@@ -40,7 +45,10 @@ const Checkout = () => {
     }
 
     const onRemoveProduct = (key) => {
-        cartDispatch({ type: 'remove', payload: { key } })
+        cartDispatch({ 
+            type: 'remove', 
+            payload: { key } 
+        })
     }
 
     return (
@@ -85,45 +93,85 @@ const Checkout = () => {
                     {
                         step === 1 && (
                         <>
-                            <Form
-                                form={form}
-                                name="basic"
-                                labelCol={{ span: 8,}}
-                                wrapperCol={{ span: 16, }}
-                                style={{ maxWidth: 600, }}
-                                initialValues={{ remember: true, }}
-                                onFinish={onFinish}
-                                onFinishFailed={onFinishFailed}
-                                onFieldsChange={onFieldsChange}
-                                onValuesChange={onValuesChange}
-                                autoComplete="off"
-                                >
-                                <Form.Item
-                                    label="Username"
-                                    name="username"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please input your username!',
-                                            whitespace: true,
-                                        },
-                                        {
-                                            validator: (_, value) =>
-                                              value.length > 3 ? Promise.resolve() : Promise.reject(new Error('Should be more than 3 chars')),
-                                        },
-                                    ]}
+                            <div className="lemon-form">
+                                <Form
+                                    size="large"
+                                    name="basic"
+                                    layout="vertical"
+                                    //labelCol={{ span: 8,}}
+                                    //wrapperCol={{ span: 16, }}
+                                    initialValues={{ remember: true, }}
+                                    onFinish={onFinish}
+                                    onFinishFailed={onFinishFailed}
+                                    onFieldsChange={onFieldsChange}
+                                    onValuesChange={onValuesChange}
+                                    autoComplete="off"
                                     >
-                                    <Input />
-                                </Form.Item>
+                                    <div className="lemon-form-inner">
+                                        <Form.Item
+                                            label="Your name"
+                                            name="name"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    min: 3,
+                                                    message: 'Please input your usernam!',
+                                                    whitespace: true,
+                                                },
+                                                {
+                                                    type: 'string',
+                                                    min: 3,
+                                                    message: 'Should be more than 3 chars',
+                                                },
+                                            ]}
+                                            >
+                                            <Input />
+                                        </Form.Item>
 
-                                <Form.Item wrapperCol={{ offset: 8, span: 16,}}>
-                                    <Button className="lemon-btn-b" shape="round" size="large" type="primary" htmlType="submit">
-                                        Submit
-                                    </Button>
-                                </Form.Item>
-                            </Form>
+                                        <Form.Item
+                                            label="E-Mail address"
+                                            name="email"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: 'Please input your email address',
+                                                },
+                                                {
+                                                    type: 'email',
+                                                    message: 'Should be email address',
+                                                },
+                                            ]}
+                                            >
+                                            <Input />
+                                        </Form.Item>
 
-                            <StepsNav step={step} setStep={setStep} hasItems={!!cart.items.length} next="Complete" />
+                                        <Form.Item
+                                            label="Your phone number"
+                                            name="phone"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    min: 7,
+                                                    message: "Wrong phone format!",
+                                                    whitespace: false,
+                                                },
+                                            ]}
+                                            >
+                                            <Input type="phone" />
+                                        </Form.Item>
+                                    </div>
+                                    <Form.Item>
+                                        <StepsNav
+                                            step={step}
+                                            setStep={setStep}
+                                            hasItems={!!cart.items.length}
+                                            next="Complete"
+                                        />
+                                    </Form.Item>
+                                </Form>
+                            </div>
+
+
                         </>
                         )
                     }
@@ -135,8 +183,15 @@ const Checkout = () => {
                                 title="Successfully finishing the order"
                                 subTitle="Order number: 0171 Your order will takes 30-50 minutes, please wait."
                                 extra={[
-                                <Button className="lemon-type-a" size="large" shape="round" type="primary" key="ok">
-                                    Finish
+                                <Button 
+                                    className="lemon-type-a" 
+                                    size="large" 
+                                    shape="round" 
+                                    type="primary" 
+                                    key="ok"
+                                    onClick={() => navigate("/", {replace: true})}
+                                    >
+                                    Go Home
                                 </Button>,
                                 ]}
                             />

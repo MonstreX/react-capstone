@@ -71,7 +71,7 @@ const Header = () => {
                             {
                                 key: 'menu', label: (<NavLink to='/menu' className='menu-link'>Menu</NavLink>),
                             },
-                            //!!cart.items.length && 
+                            !!cart.items.length && 
                             {
                                 key: 'order', label: (<NavLink to='/checkout' className='menu-link'>Checkout</NavLink>),
                             },
