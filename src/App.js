@@ -4,7 +4,7 @@ import { Layout } from 'antd'
 import Home from './pages/Home'
 import About from './pages/About'
 import Menu from './pages/Menu'
-import Order from './pages/Order'
+import Checkout from './pages/Checkout'
 import Booking from './pages/Booking'
 import Result from './pages/Result'
 import Header from './components/Header'
@@ -34,7 +34,7 @@ function App() {
                   <Route path='/' element={<Home />} />
                   <Route path='/about' element={<About />} />
                   <Route path='/menu' element={<Menu />} />
-                  <Route path='/order' element={<Order />} />
+                  <Route path='/checkout' element={<Checkout />} />
                   <Route path='/booking' element={<Booking />} />
                   <Route path='/result' element={<Result />} />
                 </Routes>

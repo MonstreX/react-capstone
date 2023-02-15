@@ -7,7 +7,6 @@ export const MainProvider = ({ children }) => {
     const [cart, cartDispatch] = useReducer(cartReducer, {items: []})
 
     function cartReducer(state, action) {
-        console.log(state.items)
         switch (action.type) {
             case 'add':
                 let newItem = true
@@ -19,11 +18,23 @@ export const MainProvider = ({ children }) => {
                         return item
                     }
                 })
-
                 if (newItem) {
                     changedItems = [...changedItems, action.payload]
                 }
                 return { ...state, items: changedItems }
+            case 'change':
+                return { ...state, items: state.items.map(item => {
+                        if (item.key === action.payload.key) {
+                            return {...item, qty:action.payload.qty}
+                        } else {
+                            return item
+                        }
+                    })
+                }
+            case 'remove':
+                return { ...state, items: state.items.filter(item => item.key !== action.payload.key) }
+            case 'clear':
+                return { ...state, items: [] }
             default:
                 throw new Error()
         }

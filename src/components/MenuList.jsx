@@ -1,10 +1,17 @@
-import { Button, Row, Col } from 'antd'
+import { App, Button, Row, Col } from 'antd'
 import { useMain } from '../hooks/main'
 
 const MenuList = ({menuList, special = false}) => {
     const { cart, cartDispatch } =  useMain()
 
+    const { notification } = App.useApp()
+
     const addToCart = (item) => {
+        notification.info({
+            message: `Product `,
+            description: `Product [${item.title}] added to the shop-cart...`,
+        })
+
         cartDispatch({
             type: 'add', 
             payload: {
@@ -43,11 +50,11 @@ const MenuList = ({menuList, special = false}) => {
                                 <p>{item.description}</p>
                             </div>
                             <div className="lemon-menu-item__footer">
-                                <Button 
-                                    className="lemon-btn-b" 
-                                    size="large" 
-                                    type="primary" 
-                                    shape="round" 
+                                <Button
+                                    className="lemon-btn-b"
+                                    size="large"
+                                    type="primary"
+                                    shape="round"
                                     onClick={() => addToCart(item)}>
                                     Add to shop-cart
                                 </Button>
