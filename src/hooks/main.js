@@ -1,10 +1,10 @@
-import { createContext, useContext, useState, useReducer } from "react"
+import { createContext, useContext, useReducer } from "react"
 
 const MainContext = createContext(undefined)
 
-export const MainProvider = ({ children }) => {
+export const MainProvider = ({ children, cartItems = [] }) => {
 
-    const [cart, cartDispatch] = useReducer(cartReducer, {items: []})
+    const [cart, cartDispatch] = useReducer(cartReducer, {items: cartItems})
 
     function cartReducer(state, action) {
         switch (action.type) {

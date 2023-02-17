@@ -7,12 +7,12 @@ import StepsNav from '../components/StepsNav'
 import { useMain } from '../hooks/main'
 import headerImage from '../assets/images/header6.jpg'
 
-const Checkout = () => {
+const Checkout = ({initialStep = 0}) => {
 
     const navigate = useNavigate()
 
     const { cart, cartDispatch } =  useMain()
-    const [ step, setStep ] = useState(0)
+    const [ step, setStep ] = useState(initialStep)
     const [ form, setForm ] = useState()
 
     const onFinish = (values) => {
