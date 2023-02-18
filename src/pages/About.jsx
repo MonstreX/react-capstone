@@ -11,7 +11,7 @@ import about2 from '../assets/images/about2.jpg'
 const About = () => {
     return (
         <>
-            <PageHeader title="About" subtitle="about us" image={headerImage}/>
+            <PageHeader title="About" subtitle="Learn More About Our Restaurant" image={headerImage}/>
 
             <div className="container mg-section-top mg-section-bottom">
                 <Row gutter={[50,30]}>

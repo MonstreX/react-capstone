@@ -7,11 +7,11 @@ import headerImage from '../assets/images/header3.jpg'
 const Menu = () => {
     return (
         <>
-            <PageHeader title="Menu" subtitle="Our menu" image={headerImage}/>
+            <PageHeader title="Menu" subtitle="Browse Our Delicious Menu" image={headerImage}/>
 
             <div className="container mg-section-top mg-section-bottom">
                 <section className="mg-section-top">
-                    <h2 className="lemon-title mg-title-section">Menu</h2>
+                    <h2 className="lemon-title mg-title-section">Savor the Flavors</h2>
                     <MenuList menuList={menuList} />
                 </section>
             </div>

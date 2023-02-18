@@ -6,6 +6,7 @@ import ShopCartList from '../components/ShopCartList'
 import StepsNav from '../components/StepsNav'
 import { useMain } from '../hooks/main'
 import headerImage from '../assets/images/header6.jpg'
+import CheckoutForm from '../forms/CheckoutForm'
 
 const Checkout = ({initialStep = 0}) => {
 
@@ -13,26 +14,13 @@ const Checkout = ({initialStep = 0}) => {
 
     const { cart, cartDispatch } =  useMain()
     const [ step, setStep ] = useState(initialStep)
-    const [ form, setForm ] = useState()
+
+    //const isFormValid = () => !form.getFieldsError().some(({ errors }) => errors.length)
 
     const onFinish = (values) => {
-        console.log('Success:', values, form)
         setStep(2)
         cartDispatch({type: 'clear'})
     }
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo)
-    }
-
-    const onFieldsChange = (changedFields, allFields) => {
-        console.log('onFieldsChange', changedFields, allFields)
-    }
-
-    const onValuesChange = (changedValues, allValues) => {
-        console.log('onValuesChange', changedValues, allValues)
-    }
-
 
     const onChangeQty = ({key, value}) => {
         cartDispatch({
@@ -53,25 +41,25 @@ const Checkout = ({initialStep = 0}) => {
 
     return (
         <>
-            <PageHeader title="Checkout" subtitle="Check your products" image={headerImage}/>
+            <PageHeader title="Checkout" subtitle="Complete Your Order" image={headerImage}/>
 
             <div className="container mg-section-top mg-section-bottom">
                 <section className="mg-section-top">
-                    <h2 className="lemon-title mg-title-section">Checkout</h2>
+                    <h2 className="lemon-title mg-title-section">Order Completion</h2>
                     <Steps className="mg-section-bottom"
                         current={step}
                         items={[
                             {
                                 title: 'Shopping cart',
-                                description: 'Checking your shopping cart',
+                                description: 'Review Your Order and Add/Remove Items',
                             },
                             {
                                 title: 'Enter customer info',
-                                description: 'Fill up every field'
+                                description: 'Provide Your Contact and Delivery Information'
                             },
                             {
                                 title: 'Finish',
-                                description: 'Finishing the order'
+                                description: 'Confirm Your Order and delivery'
                             },
                         ]}
                     />
@@ -92,87 +80,9 @@ const Checkout = ({initialStep = 0}) => {
 
                     {
                         step === 1 && (
-                        <>
                             <div className="lemon-form">
-                                <Form
-                                    size="large"
-                                    name="basic"
-                                    layout="vertical"
-                                    //labelCol={{ span: 8,}}
-                                    //wrapperCol={{ span: 16, }}
-                                    initialValues={{ remember: true, }}
-                                    onFinish={onFinish}
-                                    onFinishFailed={onFinishFailed}
-                                    onFieldsChange={onFieldsChange}
-                                    onValuesChange={onValuesChange}
-                                    autoComplete="off"
-                                    >
-                                    <div className="lemon-form-inner">
-                                        <Form.Item
-                                            label="Your name"
-                                            name="name"
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    min: 3,
-                                                    message: 'Please input your usernam!',
-                                                    whitespace: true,
-                                                },
-                                                {
-                                                    type: 'string',
-                                                    min: 3,
-                                                    message: 'Should be more than 3 chars',
-                                                },
-                                            ]}
-                                            >
-                                            <Input />
-                                        </Form.Item>
-
-                                        <Form.Item
-                                            label="E-Mail address"
-                                            name="email"
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    message: 'Please input your email address',
-                                                },
-                                                {
-                                                    type: 'email',
-                                                    message: 'Should be email address',
-                                                },
-                                            ]}
-                                            >
-                                            <Input />
-                                        </Form.Item>
-
-                                        <Form.Item
-                                            label="Your phone number"
-                                            name="phone"
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    min: 7,
-                                                    message: "Wrong phone format!",
-                                                    whitespace: false,
-                                                },
-                                            ]}
-                                            >
-                                            <Input type="phone" />
-                                        </Form.Item>
-                                    </div>
-                                    <Form.Item>
-                                        <StepsNav
-                                            step={step}
-                                            setStep={setStep}
-                                            hasItems={!!cart.items.length}
-                                            next="Complete"
-                                        />
-                                    </Form.Item>
-                                </Form>
+                                <CheckoutForm {...{onFinish, step, setStep, cart}} />
                             </div>
-
-
-                        </>
                         )
                     }
 
@@ -180,8 +90,8 @@ const Checkout = ({initialStep = 0}) => {
                         step === 2 && (
                             <Result
                                 status="success"
-                                title="Successfully finishing the order"
-                                subTitle="Order number: 0171 Your order will takes 30-50 minutes, please wait."
+                                title="Your order is confirmed!"
+                                subTitle="We have received your order and it will be prepared and delivered to you shortly. You will receive a confirmation email with your order details and estimated delivery time. If you have any questions or concerns, please do not hesitate to contact us. We hope you enjoy your meal!"
                                 extra={[
                                 <Button 
                                     className="lemon-type-a" 

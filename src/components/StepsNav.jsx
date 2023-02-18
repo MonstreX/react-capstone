@@ -21,12 +21,12 @@ const StepsNav = ({ step, setStep, hasItems, next }) => {
             {
                 step == 0 && (
                     <Button className="lemon-btn-b"
-                    shape="round"
-                    size="large"
-                    type="primary"
-                    onClick={() => setStep(step + 1) }
-                    >
-                        { next }
+                        shape="round"
+                        size="large"
+                        type="primary"
+                        onClick={() => setStep(step + 1) }
+                        >
+                            { next }
                     </Button>
                 ) 
             }

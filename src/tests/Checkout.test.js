@@ -1,30 +1,58 @@
-import { BrowserRouter, Routes, Router } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 import { act, cleanup, screen, render, fireEvent, waitFor } from '@testing-library/react'
 
-import { ConfigProvider, App as AppProvider } from 'antd'
 import { MainProvider } from '../hooks/main'
 import Checkout from '../pages/Checkout'
 
-test('renders Checking your shopping cart test', () => {
+describe('Checkout', () => {
 
-  const history = createMemoryHistory({
-    initialEntries: ['/checkout']
+  afterEach(cleanup)
+
+  test('renders Checkout Steps test', () => {
+
+    const history = createMemoryHistory({
+      initialEntries: ['/checkout']
+    })
+
+    render(
+      <MainProvider cartItems={[
+          { key: 10, title: "Sunday Roast", price: 19.99, qty: 3 }
+        ]}>
+        <Router location={history.location} navigator={history}>
+          <Checkout initialStep={0}/>
+        </Router>
+      </MainProvider>
+    )
+
+    const linkElement = screen.getByText(/Provide Your Contact and Delivery Information/i)
+
+    expect(linkElement).toBeInTheDocument()
   })
 
-  render(
-    <ConfigProvider>
-      <AppProvider>
-        <MainProvider cartItems={[{ key: 1, title: "Salad Mokkon", price: 3.44, qty: 3 }]}>
-          <Router location={history.location} navigator={history}>
-            <Checkout initialStep={1}/>
-          </Router>
-        </MainProvider>
-      </AppProvider>
-    </ConfigProvider>
-  )
+  test('renders Checkout Step 1# shop-cart summary test', () => {
 
-  const linkElement = screen.getByText(/Your name/i)
+    const history = createMemoryHistory({
+      initialEntries: ['/checkout']
+    })
 
-  expect(linkElement).toBeInTheDocument()
+    render(
+      <MainProvider cartItems={[
+          { key: 9, title: "Sheet-Pan Curry Pork", price: 18.99, qty: 1 },
+          { key: 10, title: "Sunday Roast", price: 19.99, qty: 3 }
+        ]}>
+        <Router location={history.location} navigator={history}>
+          <Checkout initialStep={0}/>
+        </Router>
+      </MainProvider>
+    )
+
+    const linkElement = screen.getByText(/Sheet-Pan Curry Pork/i)
+
+    expect(linkElement).toBeInTheDocument()
+
+  })
+
+
 })
+

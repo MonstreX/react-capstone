@@ -1,5 +1,7 @@
 import { App, Button, Row, Col } from 'antd'
+import { ShoppingCartOutlined } from '@ant-design/icons'
 import { useMain } from '../hooks/main'
+
 
 const MenuList = ({menuList, special = false}) => {
     const { cart, cartDispatch } =  useMain()
@@ -44,7 +46,7 @@ const MenuList = ({menuList, special = false}) => {
                         <div className="lemon-menu-item__content">
                             <div className="lemon-menu-item__header">
                                 <h3>{item.title}</h3>
-                                <span>{item.price}</span>
+                                <span>${item.price}</span>
                             </div>
                             <div className="lemon-menu-item__desc">
                                 <p>{item.description}</p>
@@ -55,8 +57,10 @@ const MenuList = ({menuList, special = false}) => {
                                     size="large"
                                     type="primary"
                                     shape="round"
+                                    style={{display: "flex"}}
+                                    icon={<ShoppingCartOutlined style={{fontSize: "22px"}}/>}
                                     onClick={() => addToCart(item)}>
-                                    Add to shop-cart
+                                    Add to Your Order
                                 </Button>
                             </div>
                         </div>

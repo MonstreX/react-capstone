@@ -34,6 +34,11 @@
     /* border-radius: 15px; */
 }
 
+.ant-result-subtitle {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
 /* Forms */
 
 .lemon-form {
