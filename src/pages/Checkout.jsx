@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Steps, Result, Space, Button, Checkbox, Form, Input } from 'antd'
+import { Steps, Result, Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import ShopCartList from '../components/ShopCartList'
@@ -21,6 +21,8 @@ const Checkout = ({initialStep = 0}) => {
         setStep(2)
         cartDispatch({type: 'clear'})
     }
+
+    const onFinishFailed = ({ values, errorFields, outOfDate }) => {}
 
     const onChangeQty = ({key, value}) => {
         cartDispatch({
@@ -81,7 +83,7 @@ const Checkout = ({initialStep = 0}) => {
                     {
                         step === 1 && (
                             <div className="lemon-form">
-                                <CheckoutForm {...{onFinish, step, setStep, cart}} />
+                                <CheckoutForm {...{onFinish, onFinishFailed, step, setStep, cart}} />
                             </div>
                         )
                     }

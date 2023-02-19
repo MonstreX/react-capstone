@@ -33,11 +33,12 @@ const StepsNav = ({ step, setStep, hasItems, next }) => {
             {
                 step == 1 && (
                     <Button className="lemon-btn-b"
-                    shape="round"
-                    size="large"
-                    type="primary"
-                    htmlType="submit"
-                    >
+                        id="submit-checkout"
+                        shape="round"
+                        size="large"
+                        type="primary"
+                        htmlType="submit"
+                        >
                         { next }
                     </Button>
                 ) 

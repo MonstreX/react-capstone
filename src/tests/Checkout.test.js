@@ -7,51 +7,51 @@ import Checkout from '../pages/Checkout'
 
 describe('Checkout', () => {
 
-  afterEach(cleanup)
+    afterEach(cleanup)
 
-  test('renders Checkout Steps test', () => {
+    test('renders Checkout Steps test', () => {
 
-    const history = createMemoryHistory({
-      initialEntries: ['/checkout']
+        const history = createMemoryHistory({
+        initialEntries: ['/checkout']
+        })
+
+        render(
+        <MainProvider cartItems={[
+            { key: 10, title: "Sunday Roast", price: 19.99, qty: 3 }
+            ]}>
+            <Router location={history.location} navigator={history}>
+            <Checkout initialStep={0}/>
+            </Router>
+        </MainProvider>
+        )
+
+        const linkElement = screen.getByText(/Provide Your Contact and Delivery Information/i)
+
+        expect(linkElement).toBeInTheDocument()
     })
 
-    render(
-      <MainProvider cartItems={[
-          { key: 10, title: "Sunday Roast", price: 19.99, qty: 3 }
-        ]}>
-        <Router location={history.location} navigator={history}>
-          <Checkout initialStep={0}/>
-        </Router>
-      </MainProvider>
-    )
+    test('renders Checkout Step 1# shop-cart summary test', () => {
 
-    const linkElement = screen.getByText(/Provide Your Contact and Delivery Information/i)
+        const history = createMemoryHistory({
+        initialEntries: ['/checkout']
+        })
 
-    expect(linkElement).toBeInTheDocument()
-  })
+        render(
+        <MainProvider cartItems={[
+            { key: 9, title: "Sheet-Pan Curry Pork", price: 18.99, qty: 1 },
+            { key: 10, title: "Sunday Roast", price: 19.99, qty: 3 }
+            ]}>
+            <Router location={history.location} navigator={history}>
+            <Checkout initialStep={0}/>
+            </Router>
+        </MainProvider>
+        )
 
-  test('renders Checkout Step 1# shop-cart summary test', () => {
+        const linkElement = screen.getByText(/Sheet-Pan Curry Pork/i)
 
-    const history = createMemoryHistory({
-      initialEntries: ['/checkout']
+        expect(linkElement).toBeInTheDocument()
+
     })
-
-    render(
-      <MainProvider cartItems={[
-          { key: 9, title: "Sheet-Pan Curry Pork", price: 18.99, qty: 1 },
-          { key: 10, title: "Sunday Roast", price: 19.99, qty: 3 }
-        ]}>
-        <Router location={history.location} navigator={history}>
-          <Checkout initialStep={0}/>
-        </Router>
-      </MainProvider>
-    )
-
-    const linkElement = screen.getByText(/Sheet-Pan Curry Pork/i)
-
-    expect(linkElement).toBeInTheDocument()
-
-  })
 
 
 })
