@@ -2,9 +2,8 @@ import { useState } from 'react'
 import { Steps, Result, Space, Button, Checkbox, Form, Input } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
-import StepsNav from '../components/StepsNav'
-import { useMain } from '../hooks/main'
 import headerImage from '../assets/images/header6.jpg'
+import BookingForm from '../forms/BookingForm'
 
 const Booking = ({initialStep = 0}) => {
 
@@ -18,47 +17,35 @@ const Booking = ({initialStep = 0}) => {
 
     return (
         <>
-            <PageHeader title="Reserve a table" subtitle="Complete Your Order" image={headerImage}/>
+            <PageHeader title="Table Reservation" subtitle="Indulge in Taste and Atmosphere with Us" image={headerImage}/>
 
             <div className="container mg-section-top mg-section-bottom">
                 <section className="mg-section-top">
-                    <h2 className="lemon-title mg-title-section">Order Completion</h2>
+                    <h2 className="lemon-title mg-title-section">Booking Completion</h2>
                     <Steps className="mg-section-bottom"
                         current={step}
                         items={[
                             {
-                                title: 'Shopping cart',
-                                description: 'Review Your Order and Add/Remove Items',
+                                title: 'Provide Reservation Details',
+                                description: 'Fill out the form and choose a convenient time',
                             },
                             {
-                                title: 'Enter customer info',
-                                description: 'Provide Your Contact and Delivery Information'
-                            },
-                            {
-                                title: 'Finish',
-                                description: 'Confirm Your Order and delivery'
+                                title: 'Reservation Confirmed',
+                                description: 'Your table is reserved and ready for your visit!'
                             },
                         ]}
                     />
 
                     {
                         step === 0 && (
-                        <div className="lemon-form">
-                            BOOKING FORM #1
-                        </div>
+                            <div className="lemon-form">
+                                <BookingForm {...{onFinish, onFinishFailed, step, setStep }} />
+                            </div>
                         )
                     }
 
                     {
                         step === 1 && (
-                        <div className="lemon-form">
-                            BOOKING FORM #2
-                        </div>
-                        )
-                    }
-
-                    {
-                        step === 2 && (
                             <Result
                                 status="success"
                                 title="Your reserving a table is confirmed!"

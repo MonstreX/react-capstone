@@ -30,6 +30,14 @@
     background-color: var(--cl-secondary);
 }
 
+.lemon-btn-a.ant-btn-primary:disabled,
+.lemon-btn-b.ant-btn-primary:disabled,
+.lemon-btn-a.ant-btn-primary:disabled:hover,
+.lemon-btn-b.ant-btn-primary:disabled:hover {
+    background-color: #ddd;
+    color: #aaa;
+}
+
 .ant-carousel .slick-list {
     /* border-radius: 15px; */
 }
@@ -41,6 +49,10 @@
 
 /* Forms */
 
+.ant-steps.ant-steps-horizontal .ant-steps-item-title {
+    font-size: 1.2rem;
+}
+
 .lemon-form {
 
 }
@@ -49,4 +61,16 @@
     max-width: 500px;
     width: 100%;
     margin: 0 auto;
+}
+
+.lemon-form .ant-form-item-label >label {
+    font-size: 1rem;
+}
+
+.lemon-form .ant-picker-large {
+    width: 100%;
+}
+
+.lemon-form .ant-divider-plain.ant-divider-with-text {
+    font-size: 1.2rem;
 }

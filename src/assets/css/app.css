@@ -51,6 +51,14 @@ p:last-child {
     padding-right: 15px;
 }
 
+.container-mid {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 /* Bg */
 
 .bg-main {

@@ -1,6 +1,6 @@
 import { Space, Button } from 'antd'
 
-const StepsNav = ({ step, setStep, hasItems, next }) => {
+const StepsNav = ({ step, setStep, hasItems, next, isFormValid }) => {
 
     const justifyContent = step === 0? "flex-end" : "space-between"
 
@@ -38,6 +38,7 @@ const StepsNav = ({ step, setStep, hasItems, next }) => {
                         size="large"
                         type="primary"
                         htmlType="submit"
+                        disabled={!isFormValid}
                         >
                         { next }
                     </Button>

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Form, Input } from 'antd'
 import StepsNav from '../components/StepsNav'
 import Address from '../ui/Address'
@@ -7,7 +8,12 @@ import Phone from '../ui/Phone'
 
 const CheckoutForm = ({ onFinish, onFinishFailed, step, setStep, cart }) => {
 
+    const [isValid, setIsValid] = useState(false)
     const [form] = Form.useForm()
+
+    const onFieldsChange = () => {
+        setIsValid(!form.getFieldsError().some(({ errors }) => errors.length))
+    }
 
     return (
     <Form
@@ -16,6 +22,7 @@ const CheckoutForm = ({ onFinish, onFinishFailed, step, setStep, cart }) => {
         name="checkout"
         layout="vertical"
         onFinish={onFinish}
+        onFieldsChange={onFieldsChange}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
         >
@@ -31,6 +38,7 @@ const CheckoutForm = ({ onFinish, onFinishFailed, step, setStep, cart }) => {
                 setStep={setStep}
                 hasItems={!!cart.items.length}
                 next="Complete"
+                isFormValid={isValid}
             />
         </Form.Item>
     </Form>
