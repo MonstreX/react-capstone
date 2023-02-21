@@ -37,12 +37,11 @@ describe('Booking Form', () => {
 
     test('renders Booking Form Fields test', async () => {
 
-        const step = 0
-        const setStep = jest.fn()
         const onFinish = jest.fn()
         const onFinishFailed = jest.fn()
+        const setTargetDate = jest.fn()
 
-        render (<BookingForm {...{onFinish, onFinishFailed, step, setStep}} />)
+        render (<BookingForm {...{onFinish, onFinishFailed, setTargetDate, times: ['21:21', '23:23']}} />)
 
         const inputName = screen.getByLabelText('Your name')
         const inputEmail = screen.getByLabelText('E-Mail address')
@@ -76,9 +75,10 @@ describe('Booking Form', () => {
 
         const onFinish = jest.fn()
         const onFinishFailed = jest.fn()
+        const setTargetDate = jest.fn()
 
-        const { queryAllByText, getByText, container } = render (
-                <BookingForm {...{onFinish, onFinishFailed, timesList: ['21:21', '23:23']}} />
+        const { queryAllByText } = render (
+                <BookingForm {...{onFinish, onFinishFailed, setTargetDate, times: ['21:21', '23:23']}} />
             )
 
         const inputName = screen.getByLabelText('Your name')
@@ -150,20 +150,13 @@ describe('Booking Form', () => {
 
         const onFinish = jest.fn()
         const onFinishFailed = jest.fn()
+        const setTargetDate = jest.fn()
 
-        const { queryAllByText, getByText, container } = render (
-                <BookingForm {...{onFinish, onFinishFailed, timesList: ['21:21', '23:23']}} />
-            )
+        render (
+            <BookingForm {...{onFinish, onFinishFailed, setTargetDate, times: ['21:21', '23:23']}} />
+        )
 
         const inputName = screen.getByLabelText('Your name')
-        const inputEmail = screen.getByLabelText('E-Mail address')
-        const inputPhone = screen.getByLabelText('Your phone number')
-
-        const inputDate = screen.getByLabelText('Reservation date')
-        const inputTime = screen.getByLabelText('Reservation time')
-        const inputPersons = screen.getByLabelText('How many persons')
-        const inputOccasion = screen.getByLabelText('Reservation occasion')
-        const inputComment = screen.getByLabelText('Your comment')
 
         await act(async () => {
             fireEvent.change(inputName, { target: { value: 'Peter Havkee' } })

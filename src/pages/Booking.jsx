@@ -1,12 +1,34 @@
-import { useState } from 'react'
-import { App, Steps, Result, Button, Descriptions, Badge } from 'antd'
+import { useState, useReducer, useEffect } from 'react'
+import { App, Steps, Result, Button, Descriptions } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
 import headerImage from '../assets/images/header6.jpg'
 import BookingForm from '../forms/BookingForm'
-import { submitAPI } from '../api'
+import { fetchAPI, submitAPI } from '../api'
 
 const Booking = ({initialStep = 0}) => {
+
+    const timesReducer = (state, action) => {
+        switch (action.type) {
+            case 'updateList':
+                return { ...state, list: action.payload.times }
+            case 'initializeList':
+                return { ...state, list: [] }
+            default:
+                return state
+        }
+    }
+
+    const [times, timesDispatch] = useReducer(timesReducer, { list: [] })
+    const [targetDate, setTargetDate] = useState(new Date())
+
+    useEffect(() => {
+        const updateTimes = async (date) => {
+            const times = await fetchAPI(date)
+            timesDispatch({ type: 'updateList', payload: { times: times } })
+        }
+        updateTimes(targetDate)
+    }, [targetDate])
 
     const navigate = useNavigate()
 
@@ -57,7 +79,7 @@ const Booking = ({initialStep = 0}) => {
                     {
                         step === 0 && (
                             <div className="lemon-form">
-                                <BookingForm {...{onFinish, onFinishFailed, step, setStep }} />
+                                <BookingForm {...{onFinish, onFinishFailed, setTargetDate, times: times.list }} />
                             </div>
                         )
                     }

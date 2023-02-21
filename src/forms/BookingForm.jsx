@@ -9,33 +9,10 @@ import PersonsInput from '../ui/PersonsInput'
 import OccasionInput from '../ui/OccasionInput'
 import CommentInput from '../ui/CommentInput'
 
-import { fetchAPI } from '../api'
+const BookingForm = ({ onFinish, onFinishFailed, setTargetDate, times }) => {
 
-const BookingForm = ({ onFinish, onFinishFailed, timesList = null }) => {
-
-    const timesReducer = (state, action) => {
-        switch (action.type) {
-            case 'updateList':
-                return { ...state, list: action.payload.times }
-            case 'initializeList':
-                return { ...state, list: [] }
-            default:
-                return state
-        }
-    }
-
-    const [times, timesDispatch] = useReducer(timesReducer, { list: [] })
     const [isValid, setIsValid] = useState(false)
-    const [targetDate, setTargetDate] = useState(new Date())
     const [form] = Form.useForm()
-
-    useEffect(() => {
-        const updateTimes = async (date) => {
-            const times = await fetchAPI(date)
-            timesDispatch({ type: 'updateList', payload: { times: timesList?? times } })
-        }
-        updateTimes(targetDate)
-    }, [targetDate])
 
     const onFieldsChange = () => {
         setIsValid(!form.getFieldsError().some(({ errors }) => errors.length))
