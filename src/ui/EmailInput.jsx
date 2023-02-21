@@ -1,6 +1,6 @@
 import { Form, Input } from 'antd'
 
-const Email = () => {
+const EmailInput = () => {
     return (
         <Form.Item
             label="E-Mail address"
@@ -21,4 +21,4 @@ const Email = () => {
     )
 }
 
-export default Email
+export default EmailInput

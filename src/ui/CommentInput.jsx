@@ -1,6 +1,6 @@
 import { Form, Input } from 'antd'
 
-const Comment = () => {
+const CommentInput = () => {
     const { TextArea } = Input
     return (
         <Form.Item
@@ -12,4 +12,4 @@ const Comment = () => {
     )
 }
 
-export default Comment
+export default CommentInput

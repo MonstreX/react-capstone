@@ -4,6 +4,7 @@ import { useMain } from '../hooks/main'
 
 
 const MenuList = ({menuList, special = false}) => {
+
     const { cart, cartDispatch } =  useMain()
 
     const { notification } = App.useApp()

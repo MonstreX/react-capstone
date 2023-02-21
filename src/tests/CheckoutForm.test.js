@@ -2,7 +2,7 @@ import { act, cleanup, screen, render, fireEvent, waitFor } from '@testing-libra
 
 import CheckoutForm from '../forms/CheckoutForm'
 
-describe('CheckoutForm', () => {
+describe('Checkout Form', () => {
 
     afterEach(cleanup)
 
@@ -45,7 +45,7 @@ describe('CheckoutForm', () => {
 
         const inputSumbit = screen.getByTestId('submit-checkout')
 
-        await act(() => {
+        act(() => {
             fireEvent.change(inputName, { target: { value: 'Peter Havkee' } })
             fireEvent.blur(inputName)
 

@@ -1,6 +1,6 @@
 import { Form, Input } from 'antd'
 
-const Name = () => {
+const NameInput = () => {
     return (
         <Form.Item
             test-id="name"
@@ -20,4 +20,4 @@ const Name = () => {
     )
 }
 
-export default Name
+export default NameInput

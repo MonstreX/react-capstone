@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Form, Input } from 'antd'
 import StepsNav from '../components/StepsNav'
-import Address from '../ui/Address'
-import Email from '../ui/Email'
-import Name from '../ui/Name'
-import Phone from '../ui/Phone'
+import AddressInput from '../ui/AddressInput'
+import EmailInput from '../ui/EmailInput'
+import NameInput from '../ui/NameInput'
+import PhoneInput from '../ui/PhoneInput'
 
 const CheckoutForm = ({ onFinish, onFinishFailed, step, setStep, cart }) => {
 
@@ -27,10 +27,10 @@ const CheckoutForm = ({ onFinish, onFinishFailed, step, setStep, cart }) => {
         autoComplete="off"
         >
         <div className="lemon-form-inner">
-            <Name />
-            <Email />
-            <Phone />
-            <Address />
+            <NameInput />
+            <EmailInput />
+            <PhoneInput />
+            <AddressInput />
         </div>
         <Form.Item>
             <StepsNav

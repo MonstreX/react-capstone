@@ -1,17 +1,17 @@
 import { useState, useReducer, useEffect } from 'react'
 import { Form, Button, Row, Col, Divider } from 'antd'
-import Email from '../ui/Email'
-import Name from '../ui/Name'
-import Phone from '../ui/Phone'
+import EmailInput from '../ui/EmailInput'
+import NameInput from '../ui/NameInput'
+import PhoneInput from '../ui/PhoneInput'
 import DateInput from '../ui/DateInput'
-import Time from '../ui/Time'
-import Persons from '../ui/Persons'
-import Occasion from '../ui/Occasion'
-import Comment from '../ui/Comment'
+import TimeInput from '../ui/TimeInput'
+import PersonsInput from '../ui/PersonsInput'
+import OccasionInput from '../ui/OccasionInput'
+import CommentInput from '../ui/CommentInput'
 
-import { fetchAPI, submitAPI } from '../api'
+import { fetchAPI } from '../api'
 
-const BookingForm = ({ onFinish, onFinishFailed, step, setStep, cart }) => {
+const BookingForm = ({ onFinish, onFinishFailed, timesList = null }) => {
 
     const timesReducer = (state, action) => {
         switch (action.type) {
@@ -25,18 +25,17 @@ const BookingForm = ({ onFinish, onFinishFailed, step, setStep, cart }) => {
     }
 
     const [times, timesDispatch] = useReducer(timesReducer, { list: [] })
-
-    const updateTimes = async (date = new Date()) => {
-        const times = await fetchAPI(date)
-        timesDispatch({ type: 'updateList', payload: { times: times } })
-    }
+    const [isValid, setIsValid] = useState(false)
+    const [targetDate, setTargetDate] = useState(new Date())
+    const [form] = Form.useForm()
 
     useEffect(() => {
-        updateTimes()
-    }, [])
-
-    const [isValid, setIsValid] = useState(false)
-    const [form] = Form.useForm()
+        const updateTimes = async (date) => {
+            const times = await fetchAPI(date)
+            timesDispatch({ type: 'updateList', payload: { times: timesList?? times } })
+        }
+        updateTimes(targetDate)
+    }, [targetDate])
 
     const onFieldsChange = () => {
         setIsValid(!form.getFieldsError().some(({ errors }) => errors.length))
@@ -44,7 +43,7 @@ const BookingForm = ({ onFinish, onFinishFailed, step, setStep, cart }) => {
 
     const onDateChange = (date) => {
         if (date) {
-            updateTimes(date.$d)
+            setTargetDate(date.toDate())
         }
     }
 
@@ -52,7 +51,7 @@ const BookingForm = ({ onFinish, onFinishFailed, step, setStep, cart }) => {
         <Form
             form={form}
             size="large"
-            name="checkout"
+            name="booking"
             layout="vertical"
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
@@ -61,33 +60,33 @@ const BookingForm = ({ onFinish, onFinishFailed, step, setStep, cart }) => {
             >
             <div className="lemon-form-inner">
                 <Divider plain>Customer info</Divider>
-                <Name />
+                <NameInput />
                 <Row gutter={[20, 20]}>
-                    <Col md={12}>
-                        <Email />
+                    <Col span="24" md={12}>
+                        <EmailInput />
                     </Col>
-                    <Col md={12}>
-                        <Phone />
+                    <Col span="24" md={12}>
+                        <PhoneInput />
                     </Col>
                 </Row>
                 <Divider plain>Reservation data</Divider>
                 <Row gutter={[20, 20]}>
-                    <Col md={12}>
+                    <Col span="24" md={12}>
                         <DateInput onDateChange={onDateChange}/>
                     </Col>
-                    <Col md={12}>
-                        <Time times={times}/>
+                    <Col span="24" md={12}>
+                        <TimeInput times={times}/>
                     </Col>
                 </Row>
                 <Row gutter={[20, 20]}>
-                    <Col md={12}>
-                        <Persons />
+                    <Col span="24" md={12}>
+                        <PersonsInput />
                     </Col>
-                    <Col md={12}>
-                        <Occasion />
+                    <Col span="24" md={12}>
+                        <OccasionInput />
                     </Col>
                 </Row>
-                <Comment />
+                <CommentInput />
             </div>
             <Form.Item style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
                 <Button className="lemon-btn-b"

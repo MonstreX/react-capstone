@@ -1,6 +1,6 @@
 import { Form, Select } from 'antd'
 
-const Time = ({times}) => {
+const TimeInput = ({times}) => {
     return (
         <Form.Item
             label="Reservation time"
@@ -14,4 +14,4 @@ const Time = ({times}) => {
     )
 }
 
-export default Time
+export default TimeInput

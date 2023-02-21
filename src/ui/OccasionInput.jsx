@@ -1,6 +1,6 @@
 import { Form, Select } from 'antd'
 
-const Occasion = () => {
+const OccasionInput = () => {
     const occasions = ['Birthday', 'Engagement', 'Anniversary', 'Others']
     return (
         <Form.Item
@@ -18,4 +18,4 @@ const Occasion = () => {
     )
 }
 
-export default Occasion
+export default OccasionInput

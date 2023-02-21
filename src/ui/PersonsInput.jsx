@@ -1,6 +1,6 @@
 import { Form, Select } from 'antd'
 
-const Persons = () => {
+const PersonsInput = () => {
     return (
         <Form.Item
             label="How many persons"
@@ -25,4 +25,4 @@ const Persons = () => {
     )
 }
 
-export default Persons
+export default PersonsInput

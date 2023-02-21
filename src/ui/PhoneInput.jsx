@@ -1,6 +1,6 @@
 import { Form, Input } from 'antd'
 
-const Phone = () => {
+const PhoneInput = () => {
     return (
         <Form.Item
             label="Your phone number"
@@ -19,4 +19,4 @@ const Phone = () => {
     )
 }
 
-export default Phone
+export default PhoneInput
