@@ -34,7 +34,7 @@ const Booking = ({initialStep = 0}) => {
     const onFinishFailed = ({ values, errorFields, outOfDate }) => {}
 
     return (
-        <>
+        <div className='fadein-200'>
             <PageHeader title="Table Reservation" subtitle="Indulge in Taste and Atmosphere with Us" image={headerImage}/>
 
             <div className="container mg-section-top mg-section-bottom">
@@ -102,7 +102,7 @@ const Booking = ({initialStep = 0}) => {
                     }
                 </section>
             </div>
-        </>
+        </div>
     )
 }
 

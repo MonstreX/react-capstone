@@ -10,7 +10,7 @@ import about2 from '../assets/images/about2.jpg'
 
 const About = () => {
     return (
-        <>
+        <div className='fadein-200'>
             <PageHeader title="About" subtitle="Learn More About Our Restaurant" image={headerImage}/>
 
             <div className="container mg-section-top mg-section-bottom">
@@ -50,7 +50,7 @@ const About = () => {
                 </section>
 
             </div>
-        </>
+        </div>
     )
 }
 

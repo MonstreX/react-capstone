@@ -6,7 +6,6 @@ import About from './pages/About'
 import Menu from './pages/Menu'
 import Checkout from './pages/Checkout'
 import Booking from './pages/Booking'
-import Result from './pages/Result'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
@@ -36,7 +35,6 @@ function App() {
                   <Route path='/menu' element={<Menu />} />
                   <Route path='/checkout' element={<Checkout />} />
                   <Route path='/booking' element={<Booking />} />
-                  <Route path='/result' element={<Result />} />
                 </Routes>
               </main>
             </ContentLayout>

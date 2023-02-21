@@ -494,3 +494,20 @@ p:last-child {
     justify-content: center;
     height: 100%;
 }
+
+/* Animations */
+
+/* Manual */
+
+.fadein {
+    animation: fadein .4s;
+}
+
+.fadein-200 {
+    animation: fadein .7s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

@@ -7,31 +7,31 @@ import About from "../components/About"
 
 const Home = () => {
     return (
-        <>
+        <div className='fadein-200'>
 
-        <Slider />
+            <Slider />
 
-        <section className="pd-section bg-main">
-            <div className="container">
-                <h2 className="lemon-title mg-title-section">Our special menu</h2>
-                <MenuList menuList={menuList} special={true} />
-            </div>
-        </section>
+            <section className="pd-section bg-main">
+                <div className="container">
+                    <h2 className="lemon-title mg-title-section">Our special menu</h2>
+                    <MenuList menuList={menuList} special={true} />
+                </div>
+            </section>
 
-        <section className="pd-section">
-            <div className="container">
-                <h2 className="lemon-title mg-title-section">Testimonials</h2>
-                <Testimonials testimonialsList={testimonialsList}/>
-            </div>
-        </section>
+            <section className="pd-section">
+                <div className="container">
+                    <h2 className="lemon-title mg-title-section">Testimonials</h2>
+                    <Testimonials testimonialsList={testimonialsList}/>
+                </div>
+            </section>
 
-        <section className="pd-section bg-main">
-            <div className="container">
-                <About/>
-            </div>
-        </section>
+            <section className="pd-section bg-main">
+                <div className="container">
+                    <About/>
+                </div>
+            </section>
 
-        </>
+        </div>
     )
 }
 

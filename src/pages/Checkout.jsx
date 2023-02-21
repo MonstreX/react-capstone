@@ -42,7 +42,7 @@ const Checkout = ({initialStep = 0}) => {
     }
 
     return (
-        <>
+        <div className='fadein-200'>
             <PageHeader title="Checkout" subtitle="Complete Your Order" image={headerImage}/>
 
             <div className="container mg-section-top mg-section-bottom">
@@ -111,7 +111,7 @@ const Checkout = ({initialStep = 0}) => {
                     }
                 </section>
             </div>
-        </>
+        </div>
     )
 }
 

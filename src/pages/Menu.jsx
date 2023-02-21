@@ -6,7 +6,7 @@ import headerImage from '../assets/images/header3.jpg'
 
 const Menu = () => {
     return (
-        <>
+        <div className='fadein-200'>
             <PageHeader title="Menu" subtitle="Browse Our Delicious Menu" image={headerImage}/>
 
             <div className="container mg-section-top mg-section-bottom">
@@ -15,7 +15,7 @@ const Menu = () => {
                     <MenuList menuList={menuList} />
                 </section>
             </div>
-        </>
+        </div>
 
     )
 }
